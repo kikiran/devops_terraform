@@ -1,5 +1,17 @@
 #create custom network with terraform
 
+# ec2instance 
+resource "aws_instance" "dev" {
+  ami = var.ami_id
+  instance_type = var.instance_type
+  key_name = var.keys
+  subnet_id = aws_subnet.dev.id
+  associate_public_ip_address = true
+  tags = {
+    Name: "dev_ec2"
+  }
+  
+}
 #create vpc with terraform
 resource "aws_vpc" "dev" {
   tags = {
@@ -49,4 +61,37 @@ resource "aws_nat_gateway" "dev" {
   tags = {
     Name = "mynatgateway",
   }
+}
+
+#create Security Group assocaitions for route and allocation
+resource "aws_security_group" "dev" {
+  name = "allocation_security_group"
+  vpc_id = aws_vpc.dev.id
+    tags = {
+    Name = "dev_sg"
+  }
+ ingress {
+    description      = "TLS from VPC"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    
+  }
+ingress {
+    description      = "TLS from VPC"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "TCP"
+    cidr_blocks      = ["0.0.0.0/0"]
+    
+  }
+egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    
+  }
+
 }

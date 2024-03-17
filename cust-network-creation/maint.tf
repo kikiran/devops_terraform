@@ -35,3 +35,18 @@ resource "aws_route_table_association" "dev" {
   route_table_id = aws_route_table.dev.id
   subnet_id = aws_subnet.dev.id  
 }
+
+#create eip id
+resource "aws_eip" "dev" {
+  
+}
+
+#create NAT Gateway assocaitions for route and allocation
+
+resource "aws_nat_gateway" "dev" {
+  allocation_id = aws_eip.dev.id
+  subnet_id = aws_subnet.dev.id
+  tags = {
+    Name = "mynatgateway",
+  }
+}

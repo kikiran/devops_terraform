@@ -1,3 +1,3 @@
-ami_id = "ami-0c101f26f147fa7fd"
+ami_id = "ami-0cb1561ad5807a537"
 instance_type = "t2.micro"
 key_name = "custinstance"

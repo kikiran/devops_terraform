@@ -2,4 +2,5 @@
 
 # day-01
 
-**Creating AWS Instance with tags** [./day-01]
+**Creating AWS Instance with tags** 
+- [Day-01: Creating AWS Instance with Tags](day-01/)

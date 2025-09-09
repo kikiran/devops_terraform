@@ -9,3 +9,5 @@
 - [Day-04: Using Modules to create S3 & EC2 instance](day-04/)
 
 - [Day-05: Configure Remote Backend in Terraform with S3 Storage and DynamoDB Locking](day-05/)
+
+- [Day-06: Deploying a Public EC2 Instance with Terraform and AWS Networking](day-06/)
